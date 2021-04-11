@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChartJS</title>
+    <!--Link para código do ChartsJS-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+    
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    body{
+        font-family: 'Segoe UI';
+    }
+
+    .header{
+        overflow: auto;
+        width: 100vw;
+        background-color: #232323;
+        color: white;
+
+        border-bottom: 3px solid rgb(4, 118, 122);
+
+        padding: 30px 0;
+    }
+
+    .titulo{
+        text-align: center;
+    }
+
+    .destaque{
+        color: rgb(4, 118, 122);
+    }
+    
+    .container{
+        margin-top: 100px;
+        overflow: auto;
+        display: flex;
+        align-items: center;
+    }
+
+    .container1 {
+        float: left;
+        width: 40%;
+        
+        padding-right: 50px;
+        padding-bottom: 50px;
+        margin: 0 auto;
+
+        background-color: rgb(4, 118, 122);
+    }
+
+    .container2{
+        float: left;
+        
+        width: 40%;
+        
+        padding: 30px;
+        margin: 0 auto;
+
+        background-color: rgb(4, 118, 122);
+    }
+
+</style>
+
+</head>
+
+<body>
+
+    <div class="header">
+            <h1 class="titulo"><span class="destaque">Chart.JS</span></h1>
+    </div>
+
+    <div class="container">
+        <div class="container1">
+            <canvas id="myChart"></canvas>
+        </div>
+        
+        <div class="container2">
+            <canvas id="my2Chart"></canvas>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    var ctx = document.getElementById('myChart');
+    var meuGrafico = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dec", "jan", "fev", "mar", "abr"],
+            datasets: [  
+                {
+                    label: "ITSA4",
+                    data: [9.49, 8.70, 9.07, 9.79, 10.70, 9.72, 8.90, 9.18, 11.04, 11.55, 10.79, 9.62, 10.10],
+                    borderWidth: 5,
+                    borderColor: '#e2d91c6e',
+                    pointBorderColor: '#e2d91cae', 
+					pointBackgroundColor: '#e2d91cae',
+                    backgroundColor: 'transparent'
+                },
+                {
+                    type: 'line',
+                    label: "MGLU3",
+                    data: [10.48, 12.86, 15.93, 18.08, 20.64, 23.83, 22.98, 24.99, 22.88, 25.20, 24.93, 24.55, 20.44],
+                    borderWidth: 5,
+                    borderColor: '#0fb59b6e',
+                    pointBorderColor: '#0fb59bae', 
+					pointBackgroundColor: '#0fb59bae',
+                    backgroundColor: 'transparent'
+                }
+            ]
+        },
+        
+        options: {
+            title: {
+                display: true,
+                fontSize: 30,
+                text: "Variação de valores das ações",
+                position: 'top',
+            },
+            legend: {
+                display: true,
+                reverse: true,
+                position: 'bottom'
+            },
+            layout: {
+                padding: {
+                    left: 50,
+                    top: 50
+                },
+            },
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Valor'
+                    },
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            },
+        }
+    })
+
+    var ctx2 = document.getElementById('my2Chart');
+    var meu2Grafico = new Chart(ctx2, {
+        type: 'doughnut',
+
+        data:{
+            labels: ["Ações", "Fundos imobiliários", "CDB's", "CDI"],
+            datasets: 
+                [{
+                    label: 'Dataset 1',
+                    data: ["7325.50", "2000.00", "1310.50", "1750.50"],
+                    backgroundColor: ["#0fb59b", "#11d5ee", "#d4b110", "#cc3307"],
+                }]
+        },
+
+        options: {
+            title: {
+                display: true,
+                fontSize: 30,
+                text: "Carteira",
+                position: 'top',
+            },
+            legend: {
+                display: true,
+                position: 'right'
+            }
+        }
+
+
+    })
+
+    Chart.defaults.global.defaultFontColor = "white";
+    Chart.defaults.global.defaultFontFamily = 'Segoe UI';
+</script>
